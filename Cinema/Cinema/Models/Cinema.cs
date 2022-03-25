@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace Cinema.Models
+namespace CinemaApp.Models
 {
     public class Cinema
     {
@@ -12,5 +13,7 @@ namespace Cinema.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public List<Movie> Movies { get; set; }
     }
 }
