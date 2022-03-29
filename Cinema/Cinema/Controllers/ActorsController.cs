@@ -20,5 +20,10 @@ namespace CinemaApp.Controllers
 
             return View(data);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
