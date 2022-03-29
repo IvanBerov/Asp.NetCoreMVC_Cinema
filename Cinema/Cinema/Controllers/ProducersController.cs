@@ -17,7 +17,8 @@ namespace CinemaApp.Controllers
         public async Task<IActionResult> Index()
         {
             var allProducers =await context.Producers.ToListAsync();
-            return View();
+
+            return View(allProducers);
         }
     }
 }
