@@ -43,9 +43,13 @@ namespace CinemaApp.Data.Services
             return actor;
         }
 
-        public Actor Update(int id, Actor actor)
+        public async Task<Actor> UpdateAsync(int id, Actor actor)
         {
-            throw new System.NotImplementedException();
+            _appDbContext.Update(actor);
+
+            await _appDbContext.SaveChangesAsync();
+
+            return actor;
         }
     }
 }

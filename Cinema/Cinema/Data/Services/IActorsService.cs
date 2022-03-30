@@ -12,7 +12,7 @@ namespace CinemaApp.Data.Services
 
         Task AddAsync(Actor actor);
 
-        Actor Update(int id, Actor actor);
+        Task<Actor> UpdateAsync(int id, Actor actor);
 
         Actor Delete(int id);
     }

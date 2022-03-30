@@ -48,5 +48,26 @@ namespace CinemaApp.Controllers
 
             return View(actor);
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actor = await _service.GetByIdAsync(id);
+
+            if (actor == null) return View("NotFound");
+
+            return View(actor);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,PictureUrl,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.UpdateAsync(id, actor);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
