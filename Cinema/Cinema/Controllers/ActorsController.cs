@@ -1,4 +1,5 @@
 ﻿using CinemaApp.Data.Services;
+using CinemaApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +25,19 @@ namespace CinemaApp.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("FullName,PictureUrl,Bio")]Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+
+            _service.Add(actor);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

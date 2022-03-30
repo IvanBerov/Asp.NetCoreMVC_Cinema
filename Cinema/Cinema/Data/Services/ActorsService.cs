@@ -11,12 +11,14 @@ namespace CinemaApp.Data.Services
 
         public ActorsService(AppDbContext dbContext)
         {
-            this._appDbContext = dbContext;
+            _appDbContext = dbContext;
         }
 
         public void Add(Actor actor)
         {
-            throw new System.NotImplementedException();
+            _appDbContext.Actors.Add(actor);
+
+            _appDbContext.SaveChanges();
         }
 
         public Actor Delete(int id)
