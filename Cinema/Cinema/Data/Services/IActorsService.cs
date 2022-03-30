@@ -6,11 +6,11 @@ namespace CinemaApp.Data.Services
 {
     public interface IActorsService
     {
-        Task<IEnumerable<Actor>> GetAll();
+        Task<IEnumerable<Actor>> GetAllAsync();
 
-        Actor GetById(int id);
+        Task<Actor> GetByIdAsync(int id);
 
-        void Add(Actor actor);
+        Task AddAsync(Actor actor);
 
         Actor Update(int id, Actor actor);
 

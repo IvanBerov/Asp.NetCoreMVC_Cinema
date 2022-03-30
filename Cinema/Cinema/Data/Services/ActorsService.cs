@@ -14,11 +14,11 @@ namespace CinemaApp.Data.Services
             _appDbContext = dbContext;
         }
 
-        public void Add(Actor actor)
+        public async Task AddAsync(Actor actor)
         {
-            _appDbContext.Actors.Add(actor);
+            await _appDbContext.Actors.AddAsync(actor);
 
-            _appDbContext.SaveChanges();
+            await _appDbContext.SaveChangesAsync();
         }
 
         public Actor Delete(int id)
@@ -26,7 +26,7 @@ namespace CinemaApp.Data.Services
             throw new System.NotImplementedException();
         }
 
-        public async Task<IEnumerable<Actor>> GetAll()
+        public async Task<IEnumerable<Actor>> GetAllAsync()
         {
             var result = await _appDbContext
                 .Actors
@@ -35,9 +35,12 @@ namespace CinemaApp.Data.Services
             return result;
         }
 
-        public Actor GetById(int id)
+        public async Task<Actor> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var actor = await _appDbContext.Actors
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            return actor;
         }
 
         public Actor Update(int id, Actor actor)
