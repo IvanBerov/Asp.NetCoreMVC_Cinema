@@ -21,9 +21,15 @@ namespace CinemaApp.Data.Services
             await _appDbContext.SaveChangesAsync();
         }
 
-        public Actor Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var actor = await _appDbContext
+                .Actors
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            _appDbContext.Actors.Remove(actor);
+
+            await _appDbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Actor>> GetAllAsync()

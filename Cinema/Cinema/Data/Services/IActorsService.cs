@@ -14,6 +14,6 @@ namespace CinemaApp.Data.Services
 
         Task<Actor> UpdateAsync(int id, Actor actor);
 
-        Actor Delete(int id);
+        Task DeleteAsync(int id);
     }
 }

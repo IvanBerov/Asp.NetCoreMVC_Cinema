@@ -69,5 +69,27 @@ namespace CinemaApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        //Get
+        public async Task<IActionResult> Delete(int id)
+        {
+            var actor = await _service.GetByIdAsync(id);
+
+            if (actor == null) return View("NotFound");
+
+            return View(actor);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var actor = await _service.GetByIdAsync(id);
+
+            if (actor == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
