@@ -44,7 +44,7 @@ namespace CinemaApp.Controllers
         {
             var actor = await _service.GetByIdAsync(id);
 
-            if (actor == null) return View("Empty");
+            if (actor == null) return View("NotFound");
 
             return View(actor);
         }

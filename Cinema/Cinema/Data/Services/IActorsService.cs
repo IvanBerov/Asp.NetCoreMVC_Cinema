@@ -1,19 +1,11 @@
-﻿using CinemaApp.Models;
+﻿using CinemaApp.Data.BaseRepo;
+using CinemaApp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CinemaApp.Data.Services
 {
-    public interface IActorsService
+    public interface IActorsService : IEntityBaseRepository<Actor>
     {
-        Task<IEnumerable<Actor>> GetAllAsync();
-
-        Task<Actor> GetByIdAsync(int id);
-
-        Task AddAsync(Actor actor);
-
-        Task<Actor> UpdateAsync(int id, Actor actor);
-
-        Task DeleteAsync(int id);
     }
 }
