@@ -1,7 +1,6 @@
 ﻿using CinemaApp.Data.Services;
 using CinemaApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CinemaApp.Controllers
@@ -28,7 +27,7 @@ namespace CinemaApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("FullName,PictureUrl,Bio")]Actor actor)
+        public async Task<IActionResult> Create([Bind("PictureUrl,FullName,Bio")]Actor actor)
         {
             if (!ModelState.IsValid)
             {
