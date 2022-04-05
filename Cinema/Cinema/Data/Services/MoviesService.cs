@@ -72,5 +72,52 @@ namespace CinemaApp.Data.Services
 
             return respose;
         }
+
+        public async Task UpdateMovieAsync(NewMovieViewModel model)
+        {
+            var currMovie = await _appDbContext
+                .Movies
+                .FirstOrDefaultAsync(m=> m.Id == model.Id);
+
+            if (currMovie != null)
+            {
+                currMovie.Name = model.Name;
+                currMovie.Description = model.Description;
+                currMovie.Price = model.Price;
+                currMovie.ImageUrl = model.ImageUrl;
+                currMovie.CinemaId = model.CinemaId;
+                currMovie.StartDate = model.StartDate;
+                currMovie.EndDate = model.EndDate;
+                currMovie.MovieCategory = model.MovieCategory;
+                currMovie.ProducerId = model.ProducerId;
+
+                await _appDbContext.SaveChangesAsync();
+            }
+
+            //Remove existing actors
+            var actorsToRemove = _appDbContext
+                .Actors_Movies
+                .Where(n => n.MovieId == model.Id)
+                .ToList();
+
+            _appDbContext.Actors_Movies.RemoveRange(actorsToRemove);
+
+            await _appDbContext.SaveChangesAsync();
+
+
+            //Add Movie Actors
+            foreach (var actorId in model.ActorIds)
+            {
+                var actorMovie = new Actor_Movie()
+                {
+                    MovieId = model.Id,
+                    ActorId = actorId
+                };
+
+                await _appDbContext.Actors_Movies.AddAsync(actorMovie);
+            }
+
+            await _appDbContext.SaveChangesAsync();
+        }
     }
 }
