@@ -29,6 +29,8 @@ namespace CinemaApp
 
             services.AddScoped<ICinemasService, CinemasService>();
 
+            services.AddScoped<IMoviesService, MoviesService>();
+
             services.AddControllersWithViews();
         }
 
