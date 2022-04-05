@@ -4,6 +4,7 @@ using CinemaApp.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,11 +18,31 @@ namespace CinemaApp.Controllers
         {
             _moviesService = moviesService;
         }
+
         public async Task<IActionResult> Index()
         {
             var allMovies = await _moviesService.GetAllAsync(a => a.Cinema);
 
             return View(allMovies);
+        }
+
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allMovies = await _moviesService.GetAllAsync(n => n.Cinema);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var filteredResult = allMovies
+                .Where(n => n.Name.ToLower().Contains(searchString.ToLower())
+                         || n.Description.ToLower().Contains(searchString.ToLower()))
+                .ToList();
+
+               
+
+                return View("Index", filteredResult);
+            }
+
+            return View("Index", allMovies);
         }
 
         //Get
