@@ -16,6 +16,40 @@ namespace CinemaApp.Data.Services
             _appDbContext = appDbContext;    
         }
 
+        public async Task AddNewMovieAsync(NewMovieViewModel movieModel)
+        {
+            var newMovie = new Movie()
+            {
+                Name = movieModel.Name,
+                Description = movieModel.Description,
+                Price = movieModel.Price,
+                ImageUrl = movieModel.ImageUrl,
+                CinemaId = movieModel.CinemaId,
+                StartDate = movieModel.StartDate,
+                EndDate = movieModel.EndDate,
+                MovieCategory = movieModel.MovieCategory,
+                ProducerId = movieModel.ProducerId
+            };
+
+            await _appDbContext.Movies.AddAsync(newMovie);
+            
+            await _appDbContext.SaveChangesAsync();
+
+            //Add Movie Actors
+            foreach (var actorId in movieModel.ActorIds)
+            {
+                var newActorMovie = new Actor_Movie()
+                {
+                    MovieId = newMovie.Id,
+                    ActorId = actorId,
+                };
+
+                await _appDbContext.Actors_Movies.AddAsync(newActorMovie);
+            }
+
+            await _appDbContext.SaveChangesAsync();
+        }
+
         public async Task<Movie> GetMovieByIdAsync(int id)
         {
             var movie = await _appDbContext.Movies

@@ -10,5 +10,7 @@ namespace CinemaApp.Data.Services
         Task<Movie> GetMovieByIdAsync(int id);
 
         Task<NewMovieDropdownsViewModel> GetNewMovieDropdownsValue();
+
+        Task AddNewMovieAsync(NewMovieViewModel movieModel);
     }
 }
