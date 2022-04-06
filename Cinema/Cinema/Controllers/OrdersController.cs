@@ -2,6 +2,7 @@
 using CinemaApp.Data.Services;
 using CinemaApp.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CinemaApp.Controllers
 {
@@ -16,7 +17,7 @@ namespace CinemaApp.Controllers
             _shoppingCart = shoppingCart;
         }
 
-        public IActionResult Index()
+        public IActionResult ShoppingCart()
         {
             var items = _shoppingCart.GetShoppingCartItems();
 
@@ -29,6 +30,18 @@ namespace CinemaApp.Controllers
             };
 
             return View(response);
+        }
+
+        public async Task<RedirectToActionResult> AddItemToShoppingCart(int id)
+        {
+            var movie = await _moviesService.GetMovieByIdAsync(id);
+
+            if (movie != null)
+            {
+                _shoppingCart.AddItemToCart(movie);
+            }
+
+            return RedirectToAction(nameof(ShoppingCart));
         }
     }
 }
