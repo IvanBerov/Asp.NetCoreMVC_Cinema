@@ -1,5 +1,8 @@
 ﻿using CinemaApp.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -78,6 +81,21 @@ namespace CinemaApp.Data.Cart
             }
 
             _appDbContext.SaveChanges();
+        }
+
+        public static ShoppingCart GetShoppingCart(IServiceProvider services)
+        {
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+
+            var context = services.GetService<AppDbContext>();
+
+            string cartId = session
+                .GetString("CartId") ?? Guid.NewGuid()
+                .ToString();
+
+            session.SetString("CartId", cartId);
+
+            return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
     }
 }
