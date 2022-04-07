@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CinemaApp.Data.Cart
 {
@@ -96,6 +97,18 @@ namespace CinemaApp.Data.Cart
             session.SetString("CartId", cartId);
 
             return new ShoppingCart(context) { ShoppingCartId = cartId };
+        }
+
+        public async Task ClearShoppingCartAsync()
+        {
+            var items = await _appDbContext
+                .ShoppingCartItems
+                .Where(n => n.ShoppingCartId == ShoppingCartId)
+                .ToListAsync();
+
+            _appDbContext.ShoppingCartItems.RemoveRange(items);
+
+            await _appDbContext.SaveChangesAsync();
         }
     }
 }
