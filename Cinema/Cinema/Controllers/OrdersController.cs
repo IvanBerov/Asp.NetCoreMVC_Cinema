@@ -32,13 +32,25 @@ namespace CinemaApp.Controllers
             return View(response);
         }
 
-        public async Task<RedirectToActionResult> AddItemToShoppingCart(int id)
+        public async Task<IActionResult> AddItemToShoppingCart(int id)
         {
             var movie = await _moviesService.GetMovieByIdAsync(id);
 
             if (movie != null)
             {
                 _shoppingCart.AddItemToCart(movie);
+            }
+
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+
+        public async Task<IActionResult> RemoveItemFromShoppingCart(int id)
+        {
+            var movie = await _moviesService.GetMovieByIdAsync(id);
+
+            if (movie != null)
+            {
+                _shoppingCart.RemoveItemFromCart(movie);
             }
 
             return RedirectToAction(nameof(ShoppingCart));
