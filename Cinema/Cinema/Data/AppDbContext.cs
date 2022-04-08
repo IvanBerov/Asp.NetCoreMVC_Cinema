@@ -1,13 +1,15 @@
 ﻿using CinemaApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> option) : base(option)
         {
         }
+
         //Cinema
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Movie> Movies { get; set; }
