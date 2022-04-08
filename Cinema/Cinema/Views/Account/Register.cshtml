@@ -1,14 +1,14 @@
 ﻿@using CinemaApp.Data.ViewModels; 
-@model LoginViewModel;
+@model RegisterViewModel;
 
 @{ 
-    ViewData["Title"] = "Log in to your account";
+    ViewData["Title"] = "Sign up for a new account";
 }
 
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Log in to your account</h4>
+            <h4>Sign up for a new account</h4>
         </p>
 
         @if(TempData["Error"] != null)
@@ -18,12 +18,16 @@
                 </div>
             }
 
-
         <div class="row">
             <div class="col-md-8 offset-2">
                 <form asp-action="Login">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                    <div class="form-group">
+                        <label asp-for="FullName" class="control-label"></label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <label asp-for="EmailAddress" class="control-label"></label>
                         <input asp-for="EmailAddress" class="form-control" />
@@ -34,9 +38,14 @@
                         <input asp-for="Password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
 
                     <div class="form-group">
-                        <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
+                        <input class="btn btn-outline-success float-right" type="submit" value="Sign up" />
                         <a class="btn btn-outline-secondary" asp-controller="Movies" asp-action="Index">Cancel</a>
                     </div>
                 </form>
