@@ -1,4 +1,5 @@
 ﻿using CinemaApp.Data;
+using CinemaApp.Data.Static;
 using CinemaApp.Data.ViewModels;
 using CinemaApp.Models;
 using Microsoft.AspNetCore.Identity;
@@ -58,5 +59,36 @@ namespace CinemaApp.Controllers
 
         public IActionResult Register() => View(new RegisterViewModel());
 
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel registerModel)
+        {
+            if (!ModelState.IsValid) return View(registerModel);
+
+            var user = await _userManager.FindByEmailAsync(registerModel.EmailAddress);
+
+            if (user != null)
+            {
+                TempData["Error"] = "This email address is already in use";
+
+                return View(registerModel);
+            }
+
+            var newUser = new AppUser()
+            {
+                FullName = registerModel.FullName,
+                Email = registerModel.EmailAddress,
+                UserName = registerModel.EmailAddress
+            };
+
+            var newUserResponse = await _userManager.CreateAsync(newUser, registerModel.Password);
+
+            if (newUserResponse.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+
+            }
+
+            return View("RegisterCompleted");
+        }
     }
 }
