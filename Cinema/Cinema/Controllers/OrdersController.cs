@@ -2,6 +2,7 @@
 using CinemaApp.Data.Services;
 using CinemaApp.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CinemaApp.Controllers
@@ -21,9 +22,11 @@ namespace CinemaApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            string userId = "";
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var orders = await _ordersService.GetOrdersByUserIdAsync(userId);
+            string userRole = User.FindFirstValue(ClaimTypes.Role);
+
+            var orders = await _ordersService.GetOrdersByUserIdAndRoleAsync(userId, userRole);
 
             return View(orders);
         }
@@ -71,9 +74,9 @@ namespace CinemaApp.Controllers
         {
             var items = _shoppingCart.GetShoppingCartItems();
 
-            string userId = "";
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            string userEmailAddress = "";
+            string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
             await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
 
