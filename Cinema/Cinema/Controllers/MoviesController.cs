@@ -1,5 +1,7 @@
 ﻿using CinemaApp.Data.Services;
+using CinemaApp.Data.Static;
 using CinemaApp.Data.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CinemaApp.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class MoviesController : Controller
     {
         private readonly IMoviesService _moviesService;
@@ -16,6 +19,7 @@ namespace CinemaApp.Controllers
             _moviesService = moviesService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allMovies = await _moviesService.GetAllAsync(a => a.Cinema);
@@ -23,6 +27,7 @@ namespace CinemaApp.Controllers
             return View(allMovies);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
         {
             var allMovies = await _moviesService.GetAllAsync(n => n.Cinema);
@@ -34,8 +39,6 @@ namespace CinemaApp.Controllers
                          || n.Description.ToLower().Contains(searchString.ToLower()))
                 .ToList();
 
-               
-
                 return View("Index", filteredResult);
             }
 
@@ -43,6 +46,7 @@ namespace CinemaApp.Controllers
         }
 
         //Get
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var movie = await _moviesService.GetMovieByIdAsync(id);

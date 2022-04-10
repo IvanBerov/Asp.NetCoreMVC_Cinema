@@ -1,10 +1,13 @@
 ﻿using CinemaApp.Data.Services;
+using CinemaApp.Data.Static;
 using CinemaApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace CinemaApp.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ActorsController : Controller
     {
         private readonly IActorsService _service;
@@ -14,6 +17,7 @@ namespace CinemaApp.Controllers
             this._service = service;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync();
@@ -39,6 +43,8 @@ namespace CinemaApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Get
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var actor = await _service.GetByIdAsync(id);

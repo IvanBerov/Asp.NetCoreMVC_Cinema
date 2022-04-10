@@ -1,10 +1,13 @@
 ﻿using CinemaApp.Data.Services;
+using CinemaApp.Data.Static;
 using CinemaApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace CinemaApp.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ProducersController : Controller
     {
         private readonly IProducersService _producersService;
@@ -14,6 +17,7 @@ namespace CinemaApp.Controllers
             _producersService = producersService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allProducers =await _producersService.GetAllAsync();
@@ -21,6 +25,7 @@ namespace CinemaApp.Controllers
             return View(allProducers);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var producer = await _producersService.GetByIdAsync(id);

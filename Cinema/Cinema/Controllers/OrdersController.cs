@@ -1,12 +1,15 @@
 ﻿using CinemaApp.Data.Cart;
 using CinemaApp.Data.Services;
+using CinemaApp.Data.Static;
 using CinemaApp.Data.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CinemaApp.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IMoviesService _moviesService;

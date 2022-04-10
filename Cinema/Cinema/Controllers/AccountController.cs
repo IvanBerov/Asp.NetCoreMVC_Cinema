@@ -108,5 +108,7 @@ namespace CinemaApp.Controllers
 
             return RedirectToAction("Index", "Movies");
         }
+
+        public IActionResult AccessDenied(string ReturnUrl) => View();
     }
 }
