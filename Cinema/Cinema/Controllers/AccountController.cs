@@ -4,6 +4,7 @@ using CinemaApp.Data.ViewModels;
 using CinemaApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace CinemaApp.Controllers
@@ -24,6 +25,15 @@ namespace CinemaApp.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> Users()
+        {
+            var users = await _context
+                .Users
+                .ToListAsync();
+
+            return View(users);
         }
 
         public IActionResult Login() => View(new LoginViewModel());
