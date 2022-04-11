@@ -4,6 +4,7 @@ using CinemaApp.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,6 +39,11 @@ namespace CinemaApp.Controllers
                 .Where(n => n.Name.ToLower().Contains(searchString.ToLower())
                          || n.Description.ToLower().Contains(searchString.ToLower()))
                 .ToList();
+
+                //var filteredResult = allMovies
+                //    .Where(n => string.Equals(n.Name, searchString, StringComparison.CurrentCultureIgnoreCase)
+                //    || string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase))
+                //    .ToList();
 
                 return View("Index", filteredResult);
             }
