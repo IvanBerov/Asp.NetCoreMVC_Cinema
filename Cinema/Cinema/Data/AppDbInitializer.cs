@@ -19,6 +19,8 @@ namespace CinemaApp.Data
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
+                //context.Database.EnsureDeleted();
+
                 context.Database.EnsureCreated();
 
                 //Cinema
@@ -66,34 +68,34 @@ namespace CinemaApp.Data
                     {
                         new Actor()
                         {
-                            FullName = "Actor 1",
-                            Bio = "This is the Bio of the first actor",
-                            PictureUrl = "https://i.quotev.com/img/q/u/18/4/6/bf6erner7d.jpg"
+                            FullName = "Adam Sandler",
+                            Bio = "This is the Bio of the Adam Sandler",
+                            PictureUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adam_Sandler_Cannes_2017.jpg/250px-Adam_Sandler_Cannes_2017.jpg"
 
                         },
                         new Actor()
                         {
-                            FullName = "Actor 2",
-                            Bio = "This is the Bio of the second actor",
-                            PictureUrl = "https://p1.potv.bg/r/u/rush-hour-3-5-32977-360x220.jpg"
+                            FullName = "Kevin James",
+                            Bio = "This is the Bio of Kevin James",
+                            PictureUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Kevin_James_2011_%28Cropped%29.jpg/220px-Kevin_James_2011_%28Cropped%29.jpg"
                         },
                         new Actor()
                         {
-                            FullName = "Actor 3",
-                            Bio = "This is the Bio of the third actor",
-                            PictureUrl = "https://image.gala.de/22541936/t/vk/v5/w1440/r1.5/-/angelina-jolie.jpg"
+                            FullName = "Chris Rock",
+                            Bio = "This is the Bio of Chris Rock",
+                            PictureUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Chris_Rock_WE_2012_Shankbone.JPG/250px-Chris_Rock_WE_2012_Shankbone.JPG"
                         },
                         new Actor()
                         {
-                            FullName = "Actor 4",
-                            Bio = "This is the Bio of the fourth actor",
-                            PictureUrl = "https://ais-akamai.rtl.de/masters/1202759/1686x0/jim-carrey-zieht-einen-netten-plausch-einem-selfie-vor.jpg"
+                            FullName = "David Spade",
+                            Bio = "This is the Bio of David Spade",
+                            PictureUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/David_Spade.jpg/250px-David_Spade.jpg"
                         },
                         new Actor()
                         {
-                            FullName = "Actor 5",
-                            Bio = "This is the Bio of the fifth actor",
-                            PictureUrl = "https://de.web.img2.acsta.net/pictures/17/02/08/16/50/452749.jpg"
+                            FullName = "Ryan Reynolds",
+                            Bio = "This is the Bio of Ryan Reynolds",
+                            PictureUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Deadpool_2_Japan_Premiere_Red_Carpet_Ryan_Reynolds_%28cropped%29.jpg/220px-Deadpool_2_Japan_Premiere_Red_Carpet_Ryan_Reynolds_%28cropped%29.jpg"
                         }
                     });
                     context.SaveChanges();
@@ -144,74 +146,74 @@ namespace CinemaApp.Data
                     {
                         new Movie()
                         {
-                            Name = "Life",
-                            Description = "This is the Life movie description",
+                            Name = "Grown Ups 2",
+                            Description = "This is the Grown Ups 2 movie description",
                             Price = 39.50,
-                            ImageUrl = "https://i.ytimg.com/vi/tDpvHjzgG0Q/maxresdefault.jpg",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/29/Grown_Ups_2_Poster.jpg",
                             StartDate = DateTime.Now.AddDays(-10),
                             EndDate = DateTime.Now.AddDays(10),
-                            CinemaId = 3,
-                            ProducerId = 3,
-                            MovieCategory = MovieCategory.Documentary
-                        },
-                        new Movie()
-                        {
-                            Name = "The Shawshank Redemption",
-                            Description = "This is the Shawshank Redemption description",
-                            Price = 29.50,
-                            ImageUrl = "https://m.media-amazon.com/images/I/519NBNHX5BL._SY445_.jpg",
-                            StartDate = DateTime.Now,
-                            EndDate = DateTime.Now.AddDays(3),
-                            CinemaId = 1,
-                            ProducerId = 1,
-                            MovieCategory = MovieCategory.Action
-                        },
-                        new Movie()
-                        {
-                            Name = "Ghost",
-                            Description = "This is the Ghost movie description",
-                            Price = 39.50,
-                            ImageUrl = "https://m.media-amazon.com/images/I/51XdBnBD11L.jpg",
-                            StartDate = DateTime.Now,
-                            EndDate = DateTime.Now.AddDays(7),
-                            CinemaId = 4,
-                            ProducerId = 4,
-                            MovieCategory = MovieCategory.Horror
-                        },
-                        new Movie()
-                        {
-                            Name = "Race",
-                            Description = "This is the Race movie description",
-                            Price = 39.50,
-                            ImageUrl = "https://www.uphe.com/sites/default/files/styles/scale__344w_/public/2016/03/Race_PosterArt.jpg",
-                            StartDate = DateTime.Now.AddDays(-10),
-                            EndDate = DateTime.Now.AddDays(-5),
                             CinemaId = 1,
                             ProducerId = 2,
                             MovieCategory = MovieCategory.Documentary
                         },
                         new Movie()
                         {
-                            Name = "Scoob",
-                            Description = "This is the Scoob movie description",
+                            Name = "I Now Pronounce You Chuck & Larry",
+                            Description = "This is the Chuck & Larry description",
+                            Price = 29.50,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Chuckandlarrymp.jpg/220px-Chuckandlarrymp.jpg",
+                            StartDate = DateTime.Now,
+                            EndDate = DateTime.Now.AddDays(3),
+                            CinemaId = 2,
+                            ProducerId = 1,
+                            MovieCategory = MovieCategory.Action
+                        },
+                        new Movie()
+                        {
+                            Name = "Zookeeper",
+                            Description = "This is the Zookeeper movie description",
                             Price = 39.50,
-                            ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/81SuKy3QqqL.jpg",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/Zookeeper_Poster.jpg/220px-Zookeeper_Poster.jpg",
+                            StartDate = DateTime.Now,
+                            EndDate = DateTime.Now.AddDays(7),
+                            CinemaId = 3,
+                            ProducerId = 4,
+                            MovieCategory = MovieCategory.Horror
+                        },
+                        new Movie()
+                        {
+                            Name = "The Do-Over",
+                            Description = "This is the The Do-Over movie description",
+                            Price = 39.50,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/1/12/The_Do-Over_Poster.png/220px-The_Do-Over_Poster.png",
+                            StartDate = DateTime.Now.AddDays(-10),
+                            EndDate = DateTime.Now.AddDays(-5),
+                            CinemaId = 4,
+                            ProducerId = 3,
+                            MovieCategory = MovieCategory.Documentary
+                        },
+                        new Movie()
+                        {
+                            Name = "The Croods",
+                            Description = "This is the Croods movie description",
+                            Price = 39.50,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/6/63/The_Croods.png/220px-The_Croods.png",
                             StartDate = DateTime.Now.AddDays(-10),
                             EndDate = DateTime.Now.AddDays(-2),
-                            CinemaId = 1,
-                            ProducerId = 3,
+                            CinemaId = 5,
+                            ProducerId = 5,
                             MovieCategory = MovieCategory.Cartoon
                         },
                         new Movie()
                         {
-                            Name = "Cold Soles",
-                            Description = "This is the Cold Soles movie description",
+                            Name = "Big Daddy",
+                            Description = "This is the Big Daddy movie description",
                             Price = 39.50,
-                            ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/81TYxygDsBL._RI_.jpg",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/c/ca/Big_Daddy_film.jpg",
                             StartDate = DateTime.Now.AddDays(3),
                             EndDate = DateTime.Now.AddDays(20),
                             CinemaId = 1,
-                            ProducerId = 5,
+                            ProducerId = 2,
                             MovieCategory = MovieCategory.Drama
                         }
                     });
@@ -222,99 +224,82 @@ namespace CinemaApp.Data
                 {
                     context.Actors_Movies.AddRange(new List<Actor_Movie>()
                     {
+                        // Grown Ups
+                        new Actor_Movie()
+                        {
+                            ActorId = 2,
+                            MovieId = 5
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId = 3,
+                            MovieId = 5
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId = 4,
+                            MovieId = 5
+                        },
+                         new Actor_Movie()
+                        {
+                            ActorId = 5,
+                            MovieId = 5
+                        },
+
+
+                        //"I Now Pronounce You Chuck & Larry"
+                         new Actor_Movie()
+                        {
+                            ActorId = 4,
+                            MovieId = 4
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId = 5,
+                            MovieId = 4
+                        },
+
+
+                        //"Zookeeper"
+                        new Actor_Movie()
+                        {
+                            ActorId = 4,
+                            MovieId = 3
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId = 5,
+                            MovieId = 3
+                        },
+
+
+                        //"The Do-Over"
+                        new Actor_Movie()
+                        {
+                            ActorId = 2,
+                            MovieId = 2
+                        },
+                        new Actor_Movie()
+                        {
+                            ActorId = 5,
+                            MovieId = 2
+                        },
+
+                        //The Croods
                         new Actor_Movie()
                         {
                             ActorId = 1,
                             MovieId = 1
                         },
-                        new Actor_Movie()
-                        {
-                            ActorId = 3,
-                            MovieId = 1
-                        },
+                        
 
-                         new Actor_Movie()
-                        {
-                            ActorId = 1,
-                            MovieId = 2
-                        },
-                         new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 2
-                        },
-
-                        new Actor_Movie()
-                        {
-                            ActorId = 1,
-                            MovieId = 3
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 2,
-                            MovieId = 3
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 5,
-                            MovieId = 3
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            ActorId = 2,
-                            MovieId = 4
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 3,
-                            MovieId = 4
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 4
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            ActorId = 2,
-                            MovieId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 3,
-                            MovieId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 5,
-                            MovieId = 5
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            ActorId = 3,
-                            MovieId = 6
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 6
-                        },
+                        //"BigDaddy"
                         new Actor_Movie()
                         {
                             ActorId = 5,
                             MovieId = 6
                         },
+                        
                     });
                     context.SaveChanges();
                 }
