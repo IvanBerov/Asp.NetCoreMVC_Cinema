@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CinemaApp.Data.ViewModels
 {
@@ -17,7 +18,8 @@ namespace CinemaApp.Data.ViewModels
         [Required(ErrorMessage = "Description is required")]
         public string Description { get; set; }
 
-        [Display(Name = "Price in $")]
+        [Display(Name = "Price")]
+        [DataType(DataType.Currency)]
         [Required(ErrorMessage = "Price is required")]
         public double Price { get; set; }
 
