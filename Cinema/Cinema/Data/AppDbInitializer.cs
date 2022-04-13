@@ -20,7 +20,6 @@ namespace CinemaApp.Data
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
                 //context.Database.EnsureDeleted();
-
                 context.Database.EnsureCreated();
 
                 //Cinema
@@ -246,7 +245,6 @@ namespace CinemaApp.Data
                             MovieId = 5
                         },
 
-
                         //"I Now Pronounce You Chuck & Larry"
                          new Actor_Movie()
                         {
@@ -259,7 +257,6 @@ namespace CinemaApp.Data
                             MovieId = 4
                         },
 
-
                         //"Zookeeper"
                         new Actor_Movie()
                         {
@@ -271,7 +268,6 @@ namespace CinemaApp.Data
                             ActorId = 5,
                             MovieId = 3
                         },
-
 
                         //"The Do-Over"
                         new Actor_Movie()
@@ -292,7 +288,6 @@ namespace CinemaApp.Data
                             MovieId = 1
                         },
                         
-
                         //"BigDaddy"
                         new Actor_Movie()
                         {
@@ -301,6 +296,7 @@ namespace CinemaApp.Data
                         },
                         
                     });
+
                     context.SaveChanges();
                 }
             }
