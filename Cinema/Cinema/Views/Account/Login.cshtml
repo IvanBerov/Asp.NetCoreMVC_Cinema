@@ -1,7 +1,7 @@
-﻿@using CinemaApp.Data.ViewModels; 
+﻿@using CinemaApp.Data.ViewModels;
 @model LoginViewModel;
 
-@{ 
+@{
     ViewData["Title"] = "Log in to your account";
 }
 
@@ -11,12 +11,12 @@
             <h4>Log in to your account</h4>
         </p>
 
-        @if(TempData["Error"] != null)
-            {
-                <div class="col-md-12 alert alert-danger">
-                    <span><b>Sorry!</b> - @TempData["Error"] </span>
-                </div>
-            }
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
 
 
         <div class="row">
